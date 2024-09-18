@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "983465486727",
+    "project_id": "superdiva-radio",
+    "storage_bucket": "superdiva-radio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983465486727:android:efd88ac841b0c793fd8b22",
+        "android_client_info": {
+          "package_name": "com.ihostcast.superdivaradio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983465486727-hotarm0eqvtctk5p8q8vn95j8vsslist.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv2dgJ6Z645bEqQeT1sJHskZujuAISccU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983465486727-hotarm0eqvtctk5p8q8vn95j8vsslist.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "983465486727-27mtrmoqdqv9irtjdp61pa3ufa66b93t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ihostcast.superdivaradio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
