@@ -28,6 +28,7 @@ dependencies:
   cloud_firestore: ^4.9.0
   firebase_storage: ^11.0.16
   firebase_messaging: ^14.3.0
+  logger: ^2.4.0
 
   # WordPress API integration
   wordpress_api: ^1.2.0+1
@@ -35,6 +36,7 @@ dependencies:
 
   # YouTube Live integration
   youtube_player_flutter: ^8.1.0
+  firebase_database: ^10.5.7
 
 dev_dependencies:
   flutter_test:

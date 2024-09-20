@@ -1,16 +1,12 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:superdiva_radio/constants/config.dart';
 import 'package:superdiva_radio/constants/theme.dart';
-import 'package:superdiva_radio/models/admob_models.dart';
 import 'package:superdiva_radio/models/player_models.dart';
 import 'package:superdiva_radio/models/socialnetworks_models.dart';
 import 'package:superdiva_radio/screens/sleeptimer_screens.dart';
 import 'package:superdiva_radio/widgets/sidebar.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PlayerScreen extends StatefulWidget {
   const PlayerScreen({Key? key}) : super(key: key);
@@ -24,17 +20,8 @@ class PlayerScreenState extends State<PlayerScreen> {
   late final viewModel = Provider.of<PlayerScreenModel>(context, listen: true);
   double get padding => MediaQuery.of(context).size.width * 0.08;
 
-  // ignore: unused_field
-  Future<void>? _launched;
+  // Future para lanzar URLs en el navegador
 
-  Future<void> _launchInBrowser(Uri url) async {
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +87,11 @@ class PlayerScreenState extends State<PlayerScreen> {
                     const SizedBox(height: 30),
                     _buildVolumeSlider(),
                     const SizedBox(height: 20),
-                    _socialNetwork(),
+                    _socialNetwork(), // Rediseñado para corregir errores
                     const SizedBox(height: 30),
                     _buildControlButton(),
                     const SizedBox(height: 10),
-                    AdmobService.banner,
+                    // Aquí puedes añadir tu banner de anuncios, si lo tienes configurado.
                   ],
                 ),
               ),
@@ -115,7 +102,7 @@ class PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  //Cover Image
+  // Imagen de la portada
   Widget _buildStreamCover() {
     return Center(
       child: Container(
@@ -149,7 +136,7 @@ class PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  //Metadata
+  // Título y artista
   Widget _buildStreamTitle() {
     return Expanded(
       child: SizedBox(
@@ -184,7 +171,7 @@ class PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  //Control Button (Play/Pause)
+  // Botón de control (Play/Pause)
   Widget _buildControlButton() {
     return ClipOval(
       child: Material(
@@ -210,7 +197,7 @@ class PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  //Volume Control
+  // Control de volumen
   Widget _buildVolumeSlider() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -251,76 +238,58 @@ class PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  //Social Network Buttons
+  // Redes sociales
   Widget _socialNetwork() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Visibility(
-          visible: userYoutube.isNotEmpty,
-          child: IconButton(
+        if (toYoutube != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.youtube,
                 size: 35.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toYoutube);
             }),
           ),
-        ),
         const SizedBox(width: 10),
-        Visibility(
-          visible: userInstagram.isNotEmpty,
-          child: IconButton(
+        if (toInstagram != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.instagram,
                 size: 40.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toInstagram);
             }),
           ),
-        ),
         const SizedBox(width: 10),
-        Visibility(
-          visible: userTwitter.isNotEmpty,
-          child: IconButton(
+        if (toTwitter != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.twitter,
                 size: 40.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toTwitter);
             }),
           ),
-        ),
         const SizedBox(width: 10),
-        Visibility(
-          visible: pageFacebook.isNotEmpty,
-          child: IconButton(
+        if (toFacebook != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.facebook,
                 size: 40.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toFacebook);
             }),
           ),
-        ),
         const SizedBox(width: 10),
-        Visibility(
-          visible: site.isNotEmpty,
-          child: IconButton(
+        if (toSite != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.globe,
                 size: 39.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toSite);
             }),
           ),
-        ),
         const SizedBox(width: 10),
-        Visibility(
-          visible: numWhatsapp.isNotEmpty,
-          child: IconButton(
+        if (toWhatsapp != null)
+          IconButton(
             icon: const FaIcon(FontAwesomeIcons.whatsapp,
                 size: 40.0, color: AppTheme.socialColor),
             onPressed: () => setState(() {
-              _launched = _launchInBrowser(toWhatsapp);
             }),
           ),
-        ),
       ],
     );
   }

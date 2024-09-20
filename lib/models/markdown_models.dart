@@ -70,7 +70,7 @@ class MarkdownText extends StatelessWidget {
 
     if (textStyle != null) {
       // ignore: deprecated_member_use
-      textTheme = TextTheme(bodyText2: textStyle);
+      textTheme = TextTheme(bodyMedium: textStyle);
     }
 
     return FutureBuilder<String>(

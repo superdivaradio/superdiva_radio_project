@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:superdiva_radio/constants/config.dart';
+import 'package:superdiva_radio/constants/config.dart'; // Asegúrate de importar config.dart
 import 'package:superdiva_radio/constants/language.dart';
-import 'package:superdiva_radio/models/markdown_models.dart';
 import 'package:superdiva_radio/screens/about_screens.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -54,7 +54,7 @@ class NavDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 17, color: AppTheme.headerColor),
             ),
             onTap: () {
-              _launchURL(linkStore);
+              _launchURL(Config.linkStore); // Aquí usamos el linkStore de config.dart
             },
           ),
           ListTile(
@@ -68,7 +68,7 @@ class NavDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Share.share('$textShare, $appNameScreen, \n $linkStore');
+              Share.share('${Config.textShare}, ${Config.appNameScreen}, \n ${Config.linkStore}');
             },
           ),
           ListTile(
@@ -111,7 +111,7 @@ class NavDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 15, color: AppTheme.headerColor),
             ),
             subtitle: Text(
-              "856 426 0201",
+              Config.numWhatsapp, // WhatsApp desde config.dart
               style: TextStyle(fontSize: 14, color: AppTheme.headerColor),
             ),
           ),

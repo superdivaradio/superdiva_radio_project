@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superdiva_radio/constants/config.dart';
+import 'package:superdiva_radio/constants/config.dart'; // Importa config para obtener el nombre y la descripción de la app
 import 'package:superdiva_radio/constants/language.dart';
 import 'package:superdiva_radio/constants/theme.dart';
 import 'package:superdiva_radio/models/markdown_models.dart';
@@ -61,7 +61,7 @@ class AboutView extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                appNameScreen,
+                Config.appNameScreen, // Nombre de la app desde la configuración
                 style: TextStyle(
                   color: AppTheme.aboutUsTitleColor,
                   fontSize: 20,
@@ -70,7 +70,7 @@ class AboutView extends StatelessWidget {
               ),
               const SizedBox(height: 7),
               Text(
-                appDescription,
+                Config.appDescription, // Descripción de la app desde la configuración
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -97,12 +97,12 @@ class AboutView extends StatelessWidget {
             color: AppTheme.aboutContainerBackgroundColor,
           ),
           child: MarkdownText(
-            filename: 'assets/text/about.md',
+            filename: 'assets/text/about.md', // Archivo Markdown para el contenido
             textStyle: TextStyle(
               color: AppTheme.aboutUsFontColor,
               fontSize: 16,
               height: 1.5,
-              fontFamily: 'Custom',
+              fontFamily: 'Custom', // Fuente personalizada si está disponible
               fontWeight: FontWeight.w600,
             ),
           ),

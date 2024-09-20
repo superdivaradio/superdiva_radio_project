@@ -94,7 +94,7 @@ class TimerViewState extends State<TimerView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           Language.timeLeft,
           style: TextStyle(
             color: AppTheme.timerTrackColor,
@@ -103,7 +103,7 @@ class TimerViewState extends State<TimerView> {
         const SizedBox(height: 15),
         Text(
           viewModel.timerDuration.format(),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w500,
             color: AppTheme.timerTrackColor,
@@ -114,20 +114,20 @@ class TimerViewState extends State<TimerView> {
   }
 
   Widget _buildButton({
-    required title,
-    required visible,
-    required color,
-    required textColor,
-    required onTap,
+    required String title,
+    required bool visible,
+    required Color color,
+    required Color textColor,
+    required VoidCallback onTap,
   }) {
     return Visibility(
       visible: visible,
       child: ElevatedButton.icon(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(textColor),
-          backgroundColor: MaterialStateProperty.all<Color>(color),
-          minimumSize: MaterialStateProperty.all<Size>(const Size(180, 40)),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          foregroundColor: WidgetStateProperty.all<Color>(textColor),
+          backgroundColor: WidgetStateProperty.all<Color>(color),
+          minimumSize: WidgetStateProperty.all<Size>(const Size(180, 40)),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
           ),
         ),
@@ -148,12 +148,7 @@ extension DurationExtension on Duration {
     final minutes = inMinutes % 60;
     final seconds = inSeconds % 60;
 
-    // ignore: prefer_interpolation_to_compose_strings
-    return hours.toString().padLeft(2, "0") +
-        ':' +
-        minutes.toString().padLeft(2, "0") +
-        ':' +
-        seconds.toString().padLeft(2, "0");
+    return '${hours.toString().padLeft(2, "0")}:${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
   }
 }
 

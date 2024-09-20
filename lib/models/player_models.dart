@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart'; // Para Firebase
 import 'package:flutter/material.dart';
 import 'package:radio_player/radio_player.dart';
-import 'package:superdiva_radio/constants/config.dart';
+import 'package:superdiva_radio/constants/config.dart'; // Importa la configuración
 import 'package:superdiva_radio/models/metadata_models.dart';
 import 'package:superdiva_radio/models/timestop_models.dart';
 import 'package:volume_regulator/volume_regulator.dart';
@@ -15,8 +15,8 @@ class PlayerScreenModel with ChangeNotifier {
   MetadataService? _metadataService;
   SmartstopService? _smartstopService;
 
-  String get artist => metadata?[0] ?? appNameScreen;
-  String get track => metadata?[1] ?? appDescription;
+  String get artist => metadata?[0] ?? Config.appNameScreen;
+  String get track => metadata?[1] ?? Config.appDescription;
 
   PlayerScreenModel() {
     _smartstopService = SmartstopService(
@@ -25,7 +25,7 @@ class PlayerScreenModel with ChangeNotifier {
     );
 
     // Activa el parser de carátulas de álbum de iTunes si es necesario
-    if (albumCover) {
+    if (Config.albumCover) {
       _radioPlayer.itunesArtworkParser(true);
     }
 
@@ -46,7 +46,7 @@ class PlayerScreenModel with ChangeNotifier {
     // Escucha los cambios de metadatos
     _radioPlayer.metadataStream.listen((value) async {
       metadata = value;
-      if (albumCover) artwork = await _radioPlayer.getArtworkImage();
+      if (Config.albumCover) artwork = await _radioPlayer.getArtworkImage();
       notifyListeners();
     });
 
@@ -66,11 +66,11 @@ class PlayerScreenModel with ChangeNotifier {
 
     _radioPlayer
         .setChannel(
-            title: appNameScreen,
+            title: Config.appNameScreen,
             url: streamUrl, // Utiliza la URL obtenida de Firebase
             imagePath: 'assets/images/logo.png')
         .then((_) {
-      if (autoplay) play();
+      if (Config.autoplay) play();
     });
   }
 
